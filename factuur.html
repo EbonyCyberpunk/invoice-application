@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <title>Factuur</title>
+
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" media="all" href="css/vendor/normalize.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/vendor/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/screen.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
+</head>
+
+<body>
+
+<div class="page">
+    <header class="header">
+
+    </header>
+
+    <div role="main" class="cf">
+      <div class="container" id="factuur">
+        <section id="header">
+          <div class="col-sm-8">
+            <h1>Factuur</h1>
+          </div>
+          <div class="col-sm-8">Factuur nr <span id="factuurNummer">1</span></div>
+          <div class="col-sm-6">
+            
+            <div id="ondernemingNaam">Naam onderneming</div>
+            <div id="ondernemingStraatNaam">Straatnaam nr</div>
+            <div id="ondernemingPostcode">Postcode Gemeente</div>
+            <div id="ondernemingBtwNummer">BE 0123 456 789</div>
+          </div>
+          <div class="col-sm-6">
+            <div id="klantNaam">Naam klant</div>
+            <div id="klantStraatNaam">Straatnaam nr</div>
+            <div id="klantPostcode">Postcode Gemeente</div>
+            <div id="klantBtwNummer">BE 0123 456 789</div>
+        </div>
+        </section>
+        <section id="content-header">
+          <div class="col-sm-4">Omschrijving</div>
+          <div class="col-sm-2">Uurprijs</div>
+          <div class="col-sm-2">Aantal</div>
+          <div class="col-sm-2">Totaal</div>
+          
+        </section>
+        <section id="content">
+          <div class="col-sm-5" id="omschrijving"><ul></ul></div>
+          <div class="col-sm-2" id="uurprijs"><ul></ul></div>
+          <div class="col-sm-2" id="aantal"><ul></ul></div>
+          <div class="col-sm-2" id="lijntotaal"><ul></ul></div>
+          <div class="col-sm-1" id="verwijderLijn"></div>
+        </section>
+        <section id="totalen">
+          <div class="col-sm-offset-7 col-sm-3 text-right">Subtotaal</div>
+          <div class="col-sm-2" id="subtotaal"></div>
+
+          <div class="col-sm-offset-7 col-sm-3 text-right">BTW</div>
+          <div class="col-sm-2" id="btw">21 %</div>
+
+          <div class="col-sm-offset-7 col-sm-3 text-right">BTW Bedrag</div>
+          <div class="col-sm-2" id="btwbedrag"></div>
+
+          <div class="col-sm-offset-7 col-sm-3 text-right" style="border-top:1px solid black;">Totaal</div>
+          <div class="col-sm-2" id="totaal" style="border-top:1px solid black;"></div>
+        </section>
+        <section id="factuurknop">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#factuurModal">
+            Voeg een factuurlijn toe
+          </button>
+        </section>
+        <section id="ondernemingknop">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#enterpriseInfoModal">
+            Wijzig onderneming gegevens
+          </button>
+        </section>
+        <section id="klantknop">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#customerInfoModal">
+            Wijzig klant gegevens
+          </button>
+        </section>
+      </div>
+    </div>
+
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="factuurModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Voeg een factuur item toe</h4>
+          </div>
+          <form>
+          <div class="modal-body">
+              <input style="width:30%" type="text" name="formOmschrijving" id="formOmschrijving" placeholder="Omschrijving">
+              <input style="width:30%" type="text" name="formUurprijs" id="formUurprijs" placeholder="Uurprijs">
+              <input style="width:30%" type="text" name="formUren" id="formUren" placeholder="uren">
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="factuurFormSend" class="btn btn-primary">Verzenden</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+   <!-- Modal -->
+   <div class="modal fade" id="enterpriseInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Wijzig onderneming gegevens</h4>
+        </div>
+        <form>
+        <div class="modal-body">
+            <input style="width:30%" type="text" name="formOndernemingFactuurNummer" id="formOndernemingFactuurNummer" placeholder="Factuur nummer">
+            <input style="width:30%" type="text" name="formOndernemingNaam" id="formOndernemingNaam" placeholder="Naam onderneming">
+            <input style="width:30%" type="text" name="formOndernemingStraatNaam" id="formOndernemingStraatNaam" placeholder="Straatnaam + nr">
+            <input style="width:30%" type="text" name="formOndernemingPostCodeGemeente" id="formOndernemingPostcodeGemeente" placeholder="Postcode & gemeente">
+            <input style="width:30%" type="text" name="formOndernemingBtw" id="formOndernemingBtw" placeholder="BTW nummer">
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="ondernemingFormSend" class="btn btn-primary">Wijzigen</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal -->
+   <div class="modal fade" id="customerInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Wijzig klant gegevens</h4>
+        </div>
+        <form>
+        <div class="modal-body">
+            <input style="width:30%" type="text" name="formKlantNaam" id="formKlantNaam" placeholder="Naam & voornaam">
+            <input style="width:30%" type="text" name="formKlantStraatNaam" id="formKlantStraatNaam" placeholder="Straatnaam + nr">
+            <input style="width:30%" type="text" name="formKlantPostCodeGemeente" id="formKlantPostcodeGemeente" placeholder="Postcode & gemeente">
+            <input style="width:30%" type="text" name="formKlantBtw" id="formKlantBtw" placeholder="BTW nummer">
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="klantFormSend" class="btn btn-primary">Wijzigen</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/vendor/modernizr.js"></script>
+  <script src="js/vendor/fastclick.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/match-height.js"></script>
+  <script src="js/vendor/imagesloaded.min.js"></script>
+  <script src="js/factuur.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+#content li{
+	list-style-type: none;
+}
+
+.verwijder{
+	color:cyan;
+	font-size: 10px;
+}
